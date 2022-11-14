@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using TokenAuth.API.Models;
+using TokenAuth.API.Repository;
 using TokenAuth.API.UserRepository;
 
 namespace TokenAuth.API.Provider
@@ -13,6 +15,30 @@ namespace TokenAuth.API.Provider
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+
+            string clientId = string.Empty;
+            string clientSecret = string.Empty;
+
+            if (!context.TryGetBasicCredentials(out clientId, out clientSecret))
+            {
+                context.SetError("invalid_client", "Client credentials could not be retrived");
+                context.Rejected();
+                return;
+            }
+
+            ClientDetail client = (new ClientDetailsRepo()).ValidateClient(clientId, clientSecret);
+
+            if (client != null)
+            {
+                context.OwinContext.Set<ClientDetail>("oauth:client", client);
+                context.Validated(clientId);
+            }
+            else 
+            {
+                context.SetError("invalid_client", "Client credentials are not valid");
+                context.Rejected();
+            }
+
             context.Validated();
         }
 

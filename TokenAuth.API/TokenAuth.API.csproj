@@ -123,13 +123,19 @@
     <Compile Include="Migrations\202211101453121_adding_user_and_employee_model.designer.cs">
       <DependentUpon>202211101453121_adding_user_and_employee_model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211141341213_adding_clientDeatils_Table.cs" />
+    <Compile Include="Migrations\202211141341213_adding_clientDeatils_Table.designer.cs">
+      <DependentUpon>202211141341213_adding_clientDeatils_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ClientDetail.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\AppAuthorizationServerProvider.cs" />
+    <Compile Include="Repository\ClientDetailsRepo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="UserRepository\UserRepo.cs" />
+    <Compile Include="Repository\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -146,6 +152,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202211101453121_adding_user_and_employee_model.resx">
       <DependentUpon>202211101453121_adding_user_and_employee_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211141341213_adding_clientDeatils_Table.resx">
+      <DependentUpon>202211141341213_adding_clientDeatils_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
